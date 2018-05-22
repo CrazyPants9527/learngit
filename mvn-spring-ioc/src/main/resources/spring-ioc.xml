@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+        <!--声明bean对象给spring容器  -->
+        <!--IOC控制反转  -->
+	<bean id="hello" class="net.study.spring.ioc.bean.Hello">
+		<!--依赖注入  -->
+		 <property name="name" value="李大爷"></property> 
+	</bean>
+	<!--静态工厂方法创建  -->
+	<bean id="creatProduct" class="net.study.spring.ioc.bean.ProductFactory" factory-method="creatProduct"></bean>
+	
+	<!--非静态工厂方法创建  -->
+	<!-- <bean id="productBean" class="net.study.spring.ioc.bean.Product"></bean>
+	<bean id="cproduct" class="net.study.spring.ioc.bean.ProductFactory2" factory-method="creatProduct">
+		<property name="product" ref="productBean"></property>
+	</bean> -->
+	
+	<!-- 通过构造器注入 -->
+	<bean id="user" class="net.study.spring.ioc.bean.User">
+		 <constructor-arg index="0">
+			<value>李总</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+			<value>密码</value>
+		</constructor-arg>  
+	</bean>
+	
+	<!-- 通过set()方法注入 -->
+	<bean id="userBean" class="net.study.spring.ioc.bean.User">
+		 <property name="name" value="李呵呵"></property>
+		 
+		<property name="password" value="mima"></property> 
+		
+		<property name="books">
+			<list>
+				<value>java</value>
+				<value>html</value>
+				<value>css</value>
+			</list>
+		</property>
+		
+		<property name="likes">
+			<set>
+				<value>吃喝嫖赌</value>
+			</set>
+		</property>
+		
+		<property name="haha">
+			<map>
+				<entry key="K1" value="K1"></entry>
+			</map>
+		</property> 
+		
+		 <property name="pro">
+			<props>
+				<prop key="P1">P1</prop>
+			</props>
+		</property> 
+	</bean>
+	
+	<!-- admin set()方法注入测试 -->
+	<bean id="admin" class="net.study.spring.ioc.bean.Admin" lazy-init="default">
+		<property name="adminname">
+			<value>admin</value>
+		</property>
+		<property name="password">
+			<value>admin密码</value>
+		</property>
+		<property name="hehe">
+			<value>呵呵</value>
+		</property>
+		<property name="list">
+			<list>
+				<value>这是一个list</value>
+			</list>
+		</property>
+	</bean>
+	
+</beans>
